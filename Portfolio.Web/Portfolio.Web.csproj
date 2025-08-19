@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\admin-template\.vscode\settings.json" />
+    <Compile Remove="wwwroot\admin-template\**" />
+    <Content Remove="wwwroot\admin-template\**" />
+    <EmbeddedResource Remove="wwwroot\admin-template\**" />
+    <None Remove="wwwroot\admin-template\**" />
   </ItemGroup>
 
   <ItemGroup>
