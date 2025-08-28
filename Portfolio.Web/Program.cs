@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Portfolio.Web.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +8,26 @@ var builder = WebApplication.CreateBuilder(args);
 //IOC Container
 //builder.Services.AddScoped<PortfolioContext>();
 builder.Services.AddDbContext<PortfolioContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opt =>
+    {
+        opt.Filters.Add(new AuthorizeFilter());
+    });
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+    {
+        options.IdleTimeout = TimeSpan.FromMinutes(30);
+        options.Cookie.HttpOnly = true;
+        options.Cookie.IsEssential = true;
+    });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "PortfolioCookie";
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
 
 var app = builder.Build();
 
@@ -20,11 +41,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
