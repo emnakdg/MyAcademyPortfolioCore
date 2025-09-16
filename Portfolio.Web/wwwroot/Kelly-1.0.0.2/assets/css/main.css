@@ -828,6 +828,40 @@ section,
   background-color: var(--accent-color);
 }
 
+.skill-progress {
+    width: 100%;
+    min-width: 150px;
+}
+
+    .skill-progress .skill-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .skill-progress .val {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--heading-color);
+        font-family: var(--heading-font);
+    }
+
+    .skill-progress .progress-bar-wrap {
+        background: color-mix(in srgb, var(--default-color), transparent 90%);
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .skill-progress .progress-bar {
+        width: 1px;
+        height: 8px;
+        transition: width 0.9s ease;
+        background-color: var(--accent-color);
+        border-radius: 4px;
+    }
+
 /*--------------------------------------------------------------
 # Stats Section
 --------------------------------------------------------------*/

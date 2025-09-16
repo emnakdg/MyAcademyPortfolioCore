@@ -1,0 +1,25 @@
+﻿@model List<Banner>
+@{
+    ViewData["Title"] = "Öne Çıkan Alan";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Öne Çıkan Resim</th>
+        <th>Ad-Soyad</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="@item.CoverImageUrl" style="height:75px;width:75px" />  </td>
+            <td>@item.NameSurname</td>
+            <td>@item.Title</td>
+            <td>
+                <a href="/Banner/UpdateBanner/@item.BannerId" class="btn btn-outline-info">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
