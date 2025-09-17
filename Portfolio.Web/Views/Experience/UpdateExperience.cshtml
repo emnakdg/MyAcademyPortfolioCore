@@ -1,0 +1,42 @@
+﻿@model Experience
+@{
+    ViewData["Title"] = "Deneyim Güncelle";
+    Layout = "~/Views/AdminLayout/Layout.cshtml";
+}
+
+<form method="post">
+    <input type="hidden" asp-for="ExperienceId" />
+    <div class="form-group">
+        <label>Rol</label>
+        <input type="text" class="form-control" asp-for="Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Başlangıç Yılı</label>
+        <input type="text" class="form-control" asp-for="StartYear">
+        <span asp-validation-for="StartYear" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Bitiş Yılı</label>
+        <input type="text" class="form-control" asp-for="EndYear">
+        <span asp-validation-for="EndYear" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Şirket</label>
+        <textarea type="text" class="form-control" asp-for="Company" rows="3"></textarea>
+        <span asp-validation-for="Company" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Şehir</label>
+        <input type="text" class="form-control" asp-for="City">
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Açıklama</label>
+        <input type="text" class="form-control" asp-for="Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-outline-primary">Güncelle</button>
+</form>
+
